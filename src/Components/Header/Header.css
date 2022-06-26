@@ -1,1 +1,24 @@
-
+.mega {
+  visibility: hidden;
+}
+/* @keyframes megaAnimation {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 65px;
+  }
+}
+.mega-animation-close {
+  animation: megaAnimationClose 1s linear 0s 1 forwards;
+  visibility: hidden;
+}
+@keyframes megaAnimationClose {
+  from {
+    top: 65px;
+  }
+  to {
+    top: 0px;
+    visibility: hidden;
+  }
+} */
