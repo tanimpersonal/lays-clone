@@ -8,7 +8,7 @@ import southern from "../../Assest/Southern-Crunchy-Cheddar-Cheese-Curls-12.625-
 import sour from "../../Assest/Sour-Cream-and-Onion-6-Oz.png";
 import spicy from "../../Assest/Spicy-Jalapeno-Cheese-Puffs-14.625-x-12-3.5-Oz-2.png";
 import lousianaHot from "../../Assest/Louisiana-Spicy-Hot-Crinkle-Chips-6-Oz.png";
-const ProductMegaMenu = ({ hover }) => {
+const ProductMegaMenu = () => {
   return (
     <div className="w-[100%]">
       <div className="products grid grid-cols-8">

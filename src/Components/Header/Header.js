@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../Assest/Logo/logo.png";
 import ProductMegaMenu from "../ProductMegaMenu/ProductMegaMenu";
+import { motion, AnimatePresence } from "framer-motion";
 import "./Header.css";
+
 const Header = () => {
-  const [click, setClick] = useState(false);
+  const [mouse, toggoleMouse] = useState(false);
   const [scroll, setScroll] = useState(false);
   const setSticky = () => {
     if (window.scrollY > 30) {
@@ -15,14 +17,32 @@ const Header = () => {
   };
 
   window.addEventListener("scroll", setSticky);
-  const handleClick = () => {
-    if (click) {
-      setClick(false);
-    } else {
-      setClick(true);
-    }
+  const toggle = () => {
+    toggoleMouse(!mouse);
   };
-
+  const subMenuAnimate = {
+    enter: {
+      opacity: 1,
+      y: "20px",
+      rotateX: 0,
+      transition: {
+        duration: 0.5,
+      },
+      display: "block",
+    },
+    exit: {
+      opacity: 0,
+      y: "-500px",
+      rotateX: -15,
+      transition: {
+        duration: 0.5,
+        delay: 0.3,
+      },
+      transitionEnd: {
+        display: "none",
+      },
+    },
+  };
   return (
     <section>
       {scroll ? (
@@ -46,27 +66,27 @@ const Header = () => {
               </a>
             </div>
             <div class="flex-none">
-              <ul class="menu menu-horizontal p-0">
+              <ul class="flex gap-5 mr-2">
                 <li>
                   <a>Item 1</a>
                 </li>
-                <li onClick={handleClick} tabindex="0">
+                <li onMouseEnter={toggle} onMouseLeave={toggle}>
                   <a className="parent-class">Parent</a>
+                  <motion.div
+                    initial="exit"
+                    animate={mouse ? "enter" : "exit"}
+                    variants={subMenuAnimate}
+                    id="mega"
+                    className="absolute w-[100%] header z-10 left-0"
+                  >
+                    <ProductMegaMenu></ProductMegaMenu>
+                  </motion.div>
                 </li>
                 <li>
                   <a>Item 3</a>
                 </li>
               </ul>
             </div>
-          </div>
-
-          <div
-            id="mega"
-            className={` absolute w-[90%] z-10  ${
-              click ? "animate__animated animate__slideInDown" : "mega"
-            }`}
-          >
-            <ProductMegaMenu></ProductMegaMenu>
           </div>
         </div>
       )}
